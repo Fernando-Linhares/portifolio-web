@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SanctumController;
-
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('/auth')->group(function(){
     Route::post('/login', [SanctumController::class, 'create']);
-    Route::delete('/logout', [SanctumController::class, 'abort']);
+    Route::get('/logout', [SanctumController::class, 'abort'])->middleware('auth:sanctum');
 });
 
 Route::middleware('auth:sanctum')->group(function(){

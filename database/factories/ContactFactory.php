@@ -17,7 +17,9 @@ class ContactFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=> $this->faker->name(),
+            'email'=> $this->faker->email(),
+            'phone' => '(00) 0 0000-0000'
         ];
     }
 }

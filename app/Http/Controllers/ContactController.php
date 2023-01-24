@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        return Contact::paginate(5);
     }
 
     /**
@@ -25,7 +25,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Contact::create($request->all());
     }
 
     /**
@@ -36,7 +36,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
+        return $contact;
     }
 
     /**
@@ -48,7 +48,9 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $contact->update($request->all());
+
+        return $contact;
     }
 
     /**
@@ -59,6 +61,10 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        if($contact->delete()){
+            return response()->json(['message'=>'deleted successfully'], 201);
+        }
+
+        return response()->json(['message'=> 'error on delete'], 500);
     }
 }
