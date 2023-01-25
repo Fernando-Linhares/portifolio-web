@@ -33,3 +33,10 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/photo', function(){
+    header('Content-Type: application/jpg');
+    echo file_get_contents(storage_path('app/public/photo'). '/perfil.jpg');
+    die;
+});
